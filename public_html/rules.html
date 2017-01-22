@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
+    <title>Csi Quiz</title>
+</head>
+<script src="jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<body>
+
+<div class="container">
+    <br><br><br>
+    <div class="row">
+        <h1 style="align-content: center ;font-family: Serif " >RULES AND REGULATIONS</h1>
+    </div>
+    <div class="row">
+        <!--rules and regulations!-->
+    </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <button id="start" class="btn-lg btn-block btn-danger">Start Quiz</button>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+<script>
+
+    $("#start").click(function () {
+        if(localStorage.getItem('questions')==null)
+        {
+            $.post('/get_questions',function (data,status) {
+                localStorage.setItem('questions',JSON.stringify(data));
+                window.location.href = '/quiz.html';
+            });
+        }
+        else  window.location.href = '/quiz.html';
+
+    });
+
+</script>
+</body>
+</html>

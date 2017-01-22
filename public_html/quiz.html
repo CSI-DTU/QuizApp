@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
+    <title>Csi Quiz</title>
+<script src="jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="firebase.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <br>
+    <div class="jumbotron">
+        <h1 style=" text-align:center; font-size:80px;font-family: 'Abyssinica SIL'">CSI QUIZ</h1>
+    </div>
+    <br><br>
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" id ="score"> </div>
+        <div class="col-sm-4"></div>
+    </div>
+<br><br>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1" id="number"></div>
+        <div class="col-sm-8" id="question" style="border-color: #040300;border-width: medium;margin: 3px">
+
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+    <br><br>
+
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <form>
+            <div class="radio">
+                <input type="radio" class="rad"  id="0" value="gujk" name="optradio">
+               <label for="0" id="00"></label>
+            </div>
+            <div class="radio">
+                <input type="radio" class="rad" id="1" name="optradio">
+                <label for="1" id="11"></label>
+            </div>
+            <div class="radio">
+                <input type="radio" class="rad" id="2" name="optradio">
+                <label for="2" id="22"></label>
+            </div>
+            <div class="radio">
+                <input type="radio" class="rad" id="3" name="optradio">
+                <label for="3" id="33"></label>
+            </div>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+
+    <br><br>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+            <button id="submit" class="btn-lg btn-danger">SUBMIT</button>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <button id="next" class="btn-lg btn-danger" style="visibility: hidden">NEXT</button>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+    <br><br><br>
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>

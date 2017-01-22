@@ -1,0 +1,24 @@
+{
+  "name": "node.js_project",
+  "version": "1.2.0",
+  "description": "web project with nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "body-parser": "^1.15.2",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "firebase": "^3.6.6",
+    "firebase-tools": "^3.2.1",
+    "md5": "^2.1.0",
+    "mongodb": "^2.2.5",
+    "nodemon": "^1.11.0",
+    "request": "^2.74.0"
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
+    <title>CSI QUiz</title>
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script src="firebase.js"></script>
+</head>
+
+<script src="jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <h1 align="center" style="font-family: 'Abyssinica SIL';font-size: 80px"><u><i>PROFILE</i></u></h1>
+        </div>
+    </div>
+    <br><br><br><br>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+            <img src="" width="200px" height="200px" id="photo">
+        </div>
+
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6">
+            <h3 id="name"></h3>
+            <h3 id="email"></h3>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    jQuery(document).ready(function() {
+        setTimeout(function() {
+            var user = firebase.auth().currentUser;
+            user = user.providerData[0];
+            $("#photo").attr('src',user.photoURL);
+            $("#name").text('NAME : '+user.displayName);
+            $("#email").text('EMAIL : '+user.email);
+        }, 1000);
+    });
+
+</script>
+</html>
