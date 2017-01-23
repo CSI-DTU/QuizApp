@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
-    <title>CSI QUiz</title>
+    <title>CSI Quiz</title>
     <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
     <script src="js/firebase.js"></script>
 </head>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
-
+<link rel="shortcut icon" href="assets/ico/favicon.png">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <body>
 
@@ -38,15 +38,15 @@
 
 <script>
 
-    jQuery(document).ready(function() {
-        setTimeout(function() {
-            var user = firebase.auth().currentUser;
-            user = user.providerData[0];
-            $("#photo").attr('src',user.photoURL);
-            $("#name").text('NAME : '+user.displayName);
-            $("#email").text('EMAIL : '+user.email);
-        }, 1000);
+    $(function () {
+        if(localStorage.getItem('state')==null){
+            alert("Not Authenticated");
+            window.location.href = '/index.html';
+        }
+        var user = JSON.parse(localStorage.getItem('user'));
+        $("#photo").attr('src',user.photoURL);
+        $("#name").text('NAME : '+user.displayName);
+        $("#email").text('EMAIL : '+user.email);
     });
-
 </script>
 </html>

@@ -1,5 +1,12 @@
 
 
+function logged(user) {
+    $.post('/new-user',user.providerData[0],function (data,status) {
+        localStorage.setItem('user',JSON.stringify(User.providerData[0]));
+        localStorage.setItem('state','true');
+        window.location.href='/logged.html';
+    });
+}
 $("#login").click(function () {
     var obj={};
     obj.user = $("#username").val()+'@quizapp.com';
@@ -10,9 +17,7 @@ $("#login").click(function () {
         console.log(error.message);
     }).then(function (user) {
         console.log(user);
-        $.post('/new-user',user.providerData[0],function (data,status) {
-            window.location.href='/logged.html';
-        });
+        logged(user);
     });
 });
 
@@ -27,9 +32,7 @@ $("#register").click(function () {
         alert(error.message);
         window.location.href= '';
     }).then(function (user) {
-        $.post('/new-user',user.providerData[0],function (data,status) {
-            window.location.href='/logged.html';
-        });
+        logged(user);
     });
 });
 
@@ -47,11 +50,8 @@ $("#google").click(function () {
         console.log(token);
         // The signed-in user info.
         var user = result.user;
+        logged(user);
 
-        $.post('/new-user',user.providerData[0],function (data,status) {
-            window.location.href='/logged.html';
-        });
-        // ...
     }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -82,11 +82,9 @@ $("#github").click(function () {
         console.log(token);
 
         var user = result.user;
-        console.log(token);
-        $.post('/new-user',user.providerData[0],function (data,status) {
-            window.location.href='/logged.html';
-        });
-        // ...
+
+        logged(user);
+
     }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -114,11 +112,8 @@ $("#twitter").click(function () {
         var secret = result.credential.secret;
         // The signed-in user info.
         var user = result.user;
-        console.log(user.providerData[0]);
-        $.post('/new-user',user.providerData[0],function (data,status) {
-            window.location.href='/logged.html';
-        });
-        // ...
+
+        logged(user);
     }).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -131,9 +126,9 @@ $("#twitter").click(function () {
     });
 });
 
-$("#signout").click(function () {
+$(function () {
     firebase.auth().signOut().then(function() {
-        window.location.href='/index.html';
+       localStorage.clear();
     }, function(error) {
         console.log(error.code);
         console.log(error.message);

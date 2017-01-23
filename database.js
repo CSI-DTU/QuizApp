@@ -13,8 +13,6 @@ function new_user(obj,callback)
             if(result.length)
             {
                 db.close();
-                console.log(obj.uid);
-                console.log("yess");
                 callback(0);
             }
             else

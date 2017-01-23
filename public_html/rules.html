@@ -7,17 +7,25 @@
 </head>
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.js"></script>
+<link rel="shortcut icon" href="assets/ico/favicon.png">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
 <body>
 
 <div class="container">
     <br><br><br>
     <div class="row">
-        <h1 style="align-content: center ;font-family: Serif " >RULES AND REGULATIONS</h1>
+        <h1 align="center" style="align-content: center ;font-family: Serif " >RULES AND REGULATIONS</h1>
     </div>
-    <div class="row">
-        <!--rules and regulations!-->
+    <br><br>
+    <div class="row" align="center" style="font-family: fantasy ; font-size: 25px; font-style: italic">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum."
     </div>
+    <br><br>
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-8">
@@ -28,6 +36,16 @@
 </div>
 <script>
 
+    $(function ()
+    {
+        console.log("hello");
+        if(localStorage.getItem('state')==null){
+            alert("Not Authenticated");
+            window.location.href = '/index.html';
+        }
+    });
+
+
     $("#start").click(function () {
         if(localStorage.getItem('questions')==null)
         {
@@ -37,7 +55,6 @@
             });
         }
         else  window.location.href = '/quiz.html';
-
     });
 
 </script>

@@ -11,9 +11,13 @@ window.setInterval(function () {
     }
 },10000);
 
-
 function shuffleArray()
 {
+        if(localStorage.getItem('state')==null){
+            alert("Not Authenticated");
+            window.location.href = '/index.html';
+        }
+
     var arr=[];
     var cnt=0;
     var score = 0;
