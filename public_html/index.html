@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
+    <title>CSI Quiz</title>
+</head>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+<script src="js/firebase.js"></script>
+
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link type="text/css" rel="stylesheet" href="css/form-elements.css">
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<link rel="shortcut icon" href="assets/ico/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 form-box">
+            <div class="form-top">
+                <div class="form-top-left">
+                    <h3>PLease Login</h3>
+                    <p>Enter your username and password to log on:</p>
+                </div>
+                <div class="form-top-right">
+                    <i class="fa fa-key"></i>
+                </div>
+            </div>
+            <div class="form-bottom">
+
+                <div class="form-group">
+                    <label class="sr-only" for="username">Username</label>
+                    <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="username">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="password">
+                </div>
+                <button  id="register" class="btn-block btn-success btn-lg">Register</button>
+                <br>
+                <button id="login" class="btn-block btn-success btn-lg">Log in!</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 social-login">
+            <h3>...or login with:</h3>
+            <div class="social-login-buttons">
+                <a class="btn btn-link-1 btn-link-1-facebook" id="github">
+                    <i class="fa fa-facebook"></i> Github
+                </a>
+                <a class="btn btn-link-1 btn-link-1-twitter" id="twitter">
+                    <i class="fa fa-twitter"></i> Twitter
+                </a>
+                <a class="btn btn-link-1 btn-link-1-google-plus" id="google">
+                    <i class="fa fa-google-plus"></i> Google Plus
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/index.js"></script>
+</html>
