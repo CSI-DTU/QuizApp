@@ -23,8 +23,8 @@ function new_user(obj,callback)
                         'displayname':obj.displayName,
                         'email' : obj.email,
                         'photo-url':obj.photoURL,
-                        'score':null,
-                        'time':null
+                        'score':0,
+                        'time':2000000
                     },function (err,result) {
                         assert.equal(err,null);
                         db.close();
@@ -80,13 +80,13 @@ function update_score(obj,callback) {
 
 function leaderboard(callback) {
 
-    mongoClient.connect(url,function (err,db) {
+    mongoClient.connect(url, function (err, db) {
         var handler = db.collection('user-details');
-        handler.find({}).toArray(function (err,result) {
-            result.sort(function (a,b) {
-                if(Number(a.score) < Number(b.score))return 1;
-                if(Number(a.score) == Number(b.score)){
-                    if(Number(a.time) < Number(b.time))return -1;
+        handler.find({}).toArray(function (err, result) {
+            result.sort(function (a, b) {
+                if (Number(a.score) < Number(b.score))return 1;
+                if (Number(a.score) == Number(b.score)) {
+                    if (Number(a.time) < Number(b.time))return -1;
                     else return 1;
                 }
                 return -1;
@@ -97,7 +97,6 @@ function leaderboard(callback) {
         })
     })
 }
-
 module.exports = {
     new_user : new_user,
     add_questions:add_questions,

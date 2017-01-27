@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <! This will help in zooming in mobile>
+    <title>CSI Quiz</title>
+</head>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<link rel="shortcut icon" href="assets/ico/favicon.png">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+<body>
+<div class="container">
+    <br><br>
+    <div  >
+        <h1 align="center" style="font-family:'Padauk';font-size: 80px;color: red">LEADERBOARD</h1>
+    </div>
+    <br><br><br><br>
+    <div class="row">
+
+        <div class="col-sm-2" >
+
+        </div>
+        <div class="col-sm-8">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" style="border-color:black ; border-width: thick">
+                    <thead >
+                    <tr>
+                        <th>RANK</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>SCORE</th>
+                        <th>TIME(seconds)</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-2">
+        </div>
+    </div>
+
+
+</div>
+<script>
+
+    $(function () {
+        localStorage.clear();
+        $.post('/leaderboard',function (data,status) {
+
+            var ans='';
+            for(var i=1;i<=data.length;i++)
+            {
+                if(data[i-1].email=="")  data[i-1].email = "----";
+                if(data[i-1].displayname =="") data[i-1].displayname ="____";
+                ans += '<tr>' + '<td>' +  i + '</td>' +
+                     '<td>' +  data[i-1].displayname + '</td>' + '<td>' +  data[i-1].email + '</td>' +
+                    '<td>' +  data[i-1].score + '</td>' +  '<td>' +  data[i-1].time/1000.0 + '</td>' + '</tr>';
+            }
+            $('#body').append(ans);
+
+        });
+    });
+</script>
+</body>
+</html>
+
+

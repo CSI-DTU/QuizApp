@@ -1,5 +1,4 @@
 
-
 if(localStorage.getItem('time')==null)
     localStorage.setItem('time',(new Date()).getTime());
 
@@ -56,29 +55,42 @@ function shuffleArray()
 
 shuffleArray();
 $("#submit").click(function () {
-    var valRadio = Number($(".rad:checked").attr('id'));
-    var Temp = [];
-    Temp  =  JSON.parse(localStorage.getItem('questions'));
-    var cnt = Number(localStorage.getItem('cnt'));
-    var arr=[];
-    arr = JSON.parse(localStorage.getItem('arr'));
-
-    var score = Number(localStorage.getItem('score'));
-    if(valRadio==Number(Temp[arr[cnt]]["correct-answer"]))
-    {
-        score=score+Number(Temp[arr[cnt]].score);
-        localStorage.setItem('score',score);
-        alert("Correct Answer");
+    var valRadio = ($(".rad:checked").attr('id'));
+    console.log(valRadio);
+    if(valRadio==undefined){
+        alert('Please select an option');
     }
     else
     {
-        alert("Wrong Answer");
+        valRadio = Number(valRadio);
+        var Temp ;
+        Temp  =  JSON.parse(localStorage.getItem('questions'));
+        var cnt = Number(localStorage.getItem('cnt'));
+        var arr;
+        arr = JSON.parse(localStorage.getItem('arr'));
+        var score = Number(localStorage.getItem('score'));
+        if(valRadio==Number(Temp[arr[cnt]]["correct-answer"]))
+        {
+            score=score+Number(Temp[arr[cnt]].score);
+            localStorage.setItem('score',score);
+            alert("Correct Answer");
+        }
+        else
+        {
+            alert("Wrong Answer");
+        }
+        console.log('score '+score);
+        $("#score").text('Score: '+Number(score));
+        $("#next").css('visibility','visible');
+        $("#submit").css('visibility','hidden');
+        if(cnt==19)
+        {
+            alert("Quiz over");
+            $("#next").css('visibility','hidden');
+            my_func();
+        }
     }
 
-    console.log('score '+score);
-    $("#score").text('Score: '+Number(score));
-    $("#next").css('visibility','visible');
-    $("#submit").css('visibility','hidden');
 
 });
 
@@ -87,21 +99,17 @@ $("#next").click(function ()
 {
     $("#next").css('visibility','hidden');
     $("#submit").css('visibility','visible');
-    var Temp = [];
+    var Temp;
     Temp = JSON.parse(localStorage.getItem('questions'));
     var cnt = Number(localStorage.getItem('cnt'));
     cnt++;
-    var arr=[];
+    var arr;
     arr = JSON.parse(localStorage.getItem('arr'));
     $("#question").text(Temp[arr[cnt]].statement);
     $('#00').text(Temp[arr[cnt]].options[0]);
     $('#11').text(Temp[arr[cnt]].options[1]);
     $('#22').text(Temp[arr[cnt]].options[2]);
     $('#33').text(Temp[arr[cnt]].options[3]);
-    if(cnt==20)
-    {
-        my_func();
-    }
     localStorage.setItem('cnt',cnt);
     $("#number").text('Question :'+Number(cnt+1));
 });
@@ -109,18 +117,10 @@ $("#next").click(function ()
 function my_func() {
     var time = Number((new Date()).getTime())-Number(localStorage.getItem('time'));
     var user = firebase.auth().currentUser;
-
     var score = localStorage.getItem('score');
     $.post('/update-score',{score:score,uid:user.providerData[0].uid,time:time},function (data,status) {
         $.post('/leaderboard',function (data,status) {
-            alert("Quiz over");
-            localStorage.clear();
-            firebase.auth().signOut().then(function() {
-                window.location.href='/index.html';
-            }, function(error) {
-                console.log(error.code);
-                console.log(error.message);
-            });
+            window.location.href='leaderboard.html';
         });
     });
 }
